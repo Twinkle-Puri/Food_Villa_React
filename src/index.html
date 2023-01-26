@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- IN html -->
+    <div id="root">
+    </div>
+
+    <script>
+        // in js
+    const heading = document.createElement("h1");
+    heading.innerHTML = 'hello js'
+    const heading2 = document.createElement('h2')
+    heading2.innerHTML = 'hello heading'
+    const containers = document.createElement('div')
+    containers.innerHTML = heading
+    const root = document.getElementById('root') 
+
+    root.appendChild(containers)
+    // root.appendChild(heading2)
+    </script>
+        <script
+         crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script>
+    const headindR1 = React.createElement("h1",{
+        id:"heading1",
+        hello:"world"
+    },"helllo react")
+    const headindR2 = React.createElement("h2",{
+        id:"heading2",
+        style:{color:"red"}
+    },"helllo react")
+
+    const container = React.createElement("div",{id:"container"},[headindR1,headindR2])
+    // we can only have one root element & one render method
+    const rootR = ReactDOM.createRoot(document.getElementById('root'))
+    //passing a react element inside root
+    rootR.render(
+        container)
+</script>
+</body>
+</html>
