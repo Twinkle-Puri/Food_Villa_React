@@ -5,10 +5,16 @@ import Header from "./src/components/Header";
 import About from "./src/components/About";
 import Body from "./src/components/Body";
 // import { createBrowserHistory, RouterProvider } from "@remix-run/router";
-import { createBrowserRouter, Link, Outlet, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Link,
+  Outlet,
+  RouterProvider,
+} from "react-router-dom";
 import Error from "./src/components/Error";
 import ContactUs from "./src/components/ContactUs";
 import RestaurantMenu from "./src/components/RestaurantMenu";
+import Profile from "./src/components/Profile";
 //React.createElement  => object =>html(DOM)
 // JSX = React.createElement => object  => html(DOM)
 
@@ -55,7 +61,7 @@ const AppLayout = () => {
       {/* <ContactUs/> */}
       {/* <Route exact path="/about" component={About} /> */}
       {/* <Body /> */}
-      <Outlet/>
+      <Outlet />
       <Footer />
     </React.Fragment>
     // Header
@@ -74,13 +80,20 @@ const appRouter = createBrowserRouter([
     element: <AppLayout />,
     errorElement: <Error />,
     children: [
-    { path: "/", element: <Body /> },
-    { path: "/about", element: <About />,children: [{
-      path:"/about/profile",element:<Profile/>
-    }] },
-    { path: "/contact", element: <ContactUs /> },
-    { path: "/restaurant/:resId", element: <RestaurantMenu /> },
-  ],
+      { path: "/", element: <Body /> },
+      {
+        path: "/about",
+        element: <About />,
+        children: [
+          {
+            path: "/about/profile",
+            element: <Profile /> // parent path/{path}
+          },
+        ]
+      },
+      { path: "/contact", element: <ContactUs /> },
+      { path: "/restaurant/:resId", element: <RestaurantMenu /> },
+    ],
   },
 ]);
 
