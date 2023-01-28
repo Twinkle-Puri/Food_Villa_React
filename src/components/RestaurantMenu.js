@@ -15,7 +15,7 @@ const RestaurantMenu = () => {
   return !restaurant ? (
     <Shimmer />
   ) : (
-    <div className="menu" style ={{display:"flex"}}>
+    <div className="menu flex" style ={{display:"flex"}}>
       <div>
         <h1>Restraunt id: {resId}</h1>
         <h2>{restaurant?.name}</h2>

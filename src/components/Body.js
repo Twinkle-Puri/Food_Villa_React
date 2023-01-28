@@ -4,10 +4,7 @@ import useOnline from "../Utils/useOnline";
 import RestaurantCard from "./RestaurantCard";
 import ShimmerUI from "./ShimmerUI";
 import {Link} from "react-router-dom";
-// import {}
-
-
-
+import { filterData } from "../Utils/Helper";
 
 const Body = () => {
   // Avoid rendering component
@@ -42,16 +39,16 @@ const Body = () => {
   return(filterRestaurant.length===0)? <ShimmerUI/>: (
     <>
     
-      <div className="search-container">
+      <div className="search-container bg-slate-200 mb-6 justify-center">
         <input
           type="text"
           value={searchTxt}
-          className="search-input"
+          className="search-input focus:bg-slate-800 p-2 m-2"
           placeholder="Search"
           onChange={(e) => setSearchTxt(e.target.value)}
         />
         <button
-          className="search-btn"
+          className="search-btn p-2 m-2 bg-purple-900  hover:bg-gray-200 rounded-md"
           onClick={(e) => {
             // e.preventDefault()
             const data = filterData(searchTxt, allRestaurants);
@@ -62,9 +59,9 @@ const Body = () => {
           Search 
         </button>
       </div>
-      <div className="restaurant-list">
+      <div className="restaurant-list flex flex-wrap">
 {filterRestaurant.map((res) => {
-          return <Link to={"restaurant/" + res.data.id} ><RestaurantCard {...res.data} key={res.data.id} />;
+          return <Link to={"restaurant/" + res.data.id} ><RestaurantCard {...res.data} key={res.data.id} />
         </Link>
         })}
 
