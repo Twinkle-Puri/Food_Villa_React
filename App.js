@@ -1,9 +1,10 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Footer from "./src/components/Footer";
 import Header from "./src/components/Header";
-import About from "./src/components/About";
+// import About from "./src/components/About";
 import Body from "./src/components/Body";
+ 
 // import { createBrowserHistory, RouterProvider } from "@remix-run/router";
 import {
   createBrowserRouter,
@@ -15,6 +16,11 @@ import Error from "./src/components/Error";
 import ContactUs from "./src/components/ContactUs";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import Profile from "./src/components/Profile";
+import ShimmerUI from "./src/components/ShimmerUI";
+// import Instamart from "./src/components/Instamart";
+const  Instamart = lazy(() => import("./src/components/Instamart"));
+const About = lazy(() => import("./src/components/About"))
+
 //React.createElement  => object =>html(DOM)
 // JSX = React.createElement => object  => html(DOM)
 
@@ -83,16 +89,17 @@ const appRouter = createBrowserRouter([
       { path: "/", element: <Body /> },
       {
         path: "/about",
-        element: <About />,
+        element: <Suspense fallback={<h1>Loading....</h1>}><About /></Suspense>,
         children: [
           {
             path: "/about/profile",
-            element: <Profile /> // parent path/{path}
+            element: <Profile />, // parent path/{path}
           },
-        ]
+        ],
       },
       { path: "/contact", element: <ContactUs /> },
-      { path: "/restaurant/:resId", element: <RestaurantMenu /> },
+      {path:"/instamart",element:<Suspense fallback={<ShimmerUI/>}><Instamart/> </Suspense>},
+      { path: "/restaurant/:resId", element: <RestaurantMenu /> }
     ],
   },
 ]);

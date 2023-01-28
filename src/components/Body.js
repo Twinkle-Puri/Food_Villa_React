@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { restaurantList } from "../constant";
+import useOnline from "../Utils/useOnline";
 import RestaurantCard from "./RestaurantCard";
 import ShimmerUI from "./ShimmerUI";
+import {Link} from "react-router-dom";
+// import {}
 
-function filterData(searchText, restaurants) {
-    const filterData = restaurants.filter((restaurant) => restaurant.data.name.toLowerCase().includes(searchText.toLowerCase())
-  
-    );
-return filterData;
-  }
+
 
 
 const Body = () => {
@@ -33,7 +31,11 @@ const Body = () => {
 
         console.warn(response,"response")
   }
-
+// const isOnline = useOnline();
+// console.warn(isOnline);
+  // if(!isOnline){
+  //   return <h4>Please check your internet!!!</h4>
+  // }
   //not render early return
   if(!allRestaurants) return null;
 //  if(filterRestaurant.length === 0) return<h1>No restaurant found</h1>
@@ -62,7 +64,8 @@ const Body = () => {
       </div>
       <div className="restaurant-list">
 {filterRestaurant.map((res) => {
-          return <RestaurantCard {...res.data} key={res.data.id} />;
+          return <Link to={"restaurant/" + res.data.id} ><RestaurantCard {...res.data} key={res.data.id} />;
+        </Link>
         })}
 
       </div>
