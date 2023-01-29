@@ -19,7 +19,7 @@ import useOnline from "../Utils/useOnline";
         <div className="flex justify-between bg-slate-400 sm:bg-slate-800 md:bg-gray-300">
             <Title/>
             <div className="nav-items">
-                <ul class="flex py-10">
+                <ul className="flex py-10">
                     <Link to="/">
                     <li className="px-2">Home</li>
                     </Link>

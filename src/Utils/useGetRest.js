@@ -16,6 +16,6 @@ const useGetRest = () => {
     
             console.warn(response,"response")
       }
-    return [allRestaurants,filterRestaurant]
+    return {allRestaurants,filterRestaurant,setFilterRestaurants}
 }
 export default useGetRest;
