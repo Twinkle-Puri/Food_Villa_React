@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "../constant";
 import Shimmer from "./ShimmerUI";
-import { getRestaurantInfo } from "../Utils/Helper";
 import useRestaurant from "../Utils/useRestaurant";
 
 const RestaurantMenu = () => {
