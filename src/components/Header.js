@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "./assets/images/logo.jpg";
 import { Link } from "react-router-dom";
 import useOnline from "../Utils/useOnline";
+import userContext from "../Utils/userContext";
  
  const Title = () => {
     
@@ -15,6 +16,7 @@ import useOnline from "../Utils/useOnline";
  const Header =() => {
     const [isLogIn,setLoginUser] = useState(false);
     const isOnline = useOnline();
+    const {user} = useContext(userContext)
     return(
         <div className="flex justify-between bg-slate-400 sm:bg-slate-800 md:bg-gray-300">
             <Title/>
@@ -38,6 +40,7 @@ import useOnline from "../Utils/useOnline";
             </div>
             {/* <h2>Header component</h2> */}
             <h1 className="py-10 px-2">{isOnline ?  "Online" : "Offline"} </h1>
+            <span className="py-10 px-2">{user?.name}</span>
             { isLogIn ? 
             <button onClick={e => setLoginUser(false)} className="py-10 px-2">LogOut</button>:
             <button onClick={e => setLoginUser(true)} className="py-10 px-2">LogIn</button>

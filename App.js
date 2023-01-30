@@ -1,10 +1,9 @@
-import React, { lazy, Suspense } from "react";
-import ReactDOM from "react-dom/client";
+import React, { lazy, Suspense, useState ,useContext} from "react";
+import ReactDOM from "react-dom/client"
 import Footer from "./src/components/Footer";
 import Header from "./src/components/Header";
 // import About from "./src/components/About";
 import Body from "./src/components/Body";
- 
 // import { createBrowserHistory, RouterProvider } from "@remix-run/router";
 import {
   createBrowserRouter,
@@ -17,10 +16,10 @@ import ContactUs from "./src/components/ContactUs";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import Profile from "./src/components/Profile";
 import ShimmerUI from "./src/components/ShimmerUI";
+import UserContext from "./src/Utils/userContext";
 // import Instamart from "./src/components/Instamart";
 const  Instamart = lazy(() => import("./src/components/Instamart"));
 const About = lazy(() => import("./src/components/About"))
-
 //React.createElement  => object =>html(DOM)
 // JSX = React.createElement => object  => html(DOM)
 
@@ -60,8 +59,13 @@ const About = lazy(() => import("./src/components/About"))
 // }
 // 2 types of routing client & server side routing.
 const AppLayout = () => {
+  const [user,setUser] = useState({
+    name:'Twinkle',
+    email:'namastedev.com'});
+
   return (
-    <React.Fragment>
+    <UserContext.Provider value = {{user:user,
+    setUser:setUser}}>
       <Header />
       {/* <About /> */}
       {/* <ContactUs/> */}
@@ -69,7 +73,7 @@ const AppLayout = () => {
       {/* <Body /> */}
       <Outlet />
       <Footer />
-    </React.Fragment>
+    </UserContext.Provider>
     // Header
     //  -logo,nav,search
     // body
@@ -86,7 +90,10 @@ const appRouter = createBrowserRouter([
     element: <AppLayout />,
     errorElement: <Error />,
     children: [
-      { path: "/", element: <Body /> },
+      { path: "/", element: <Body  user = {{
+        name:'Twinkle',
+        email:'namastedev.com'
+      }} /> },
       {
         path: "/about",
         element: <Suspense fallback={<h1>Loading....</h1>}><About /></Suspense>,

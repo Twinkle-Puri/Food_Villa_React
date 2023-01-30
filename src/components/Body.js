@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { restaurantList } from "../constant";
 import useOnline from "../Utils/useOnline";
 import RestaurantCard from "./RestaurantCard";
 import ShimmerUI from "./ShimmerUI";
 import { Link } from "react-router-dom";
 import { filterData } from "../Utils/Helper";
+import UserContext from "../Utils/userContext";
 import useGetRest from "../Utils/useGetRest";
 
 const Body = () => {
@@ -13,6 +14,7 @@ const Body = () => {
   // const [allRestaurants,setAllRestaurants]= useState([])
   // const [filterRestaurant, setFilterRestaurants] = useState([]);
   const [searchTxt, setSearchTxt] = useState("");
+  const {user,setUser} = useContext(UserContext);
   // useEffect(()=>{
   //    getRestaurants()
   // },[])
@@ -61,12 +63,28 @@ const Body = () => {
         >
           Search
         </button>
+        <input
+          type="text"
+          value={user.name}
+          className="search-input p-2 m-2"
+          placeholder="user"
+          onChange={(e) => setUser({...user,name:e.target.value,
+          })}
+        />
+         <input
+          type="text"
+          value={user.email}
+          className="search-input p-2 m-2"
+          placeholder="user"
+          onChange={(e) => setUser({...user,email:e.target.value,
+          })}
+        />
       </div>
       <div className="restaurant-list flex flex-wrap">
         {filterRestaurant.map((res) => {
           return (
             <Link to={"restaurant/" + res.data.id} key={res.data.id}>
-              <RestaurantCard {...res.data} key={res.data.id} />
+              <RestaurantCard {...res.data} key={res.data.id} user={user} />
             </Link>
           );
         })}
