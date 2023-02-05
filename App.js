@@ -16,7 +16,10 @@ import ContactUs from "./src/components/ContactUs";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import Profile from "./src/components/Profile";
 import ShimmerUI from "./src/components/ShimmerUI";
+import { Provider } from "react-redux";
+import store from "./src/Utils/Store";
 import UserContext from "./src/Utils/userContext";
+import Cart from "./src/components/Cart";
 // import Instamart from "./src/components/Instamart";
 const  Instamart = lazy(() => import("./src/components/Instamart"));
 const About = lazy(() => import("./src/components/About"))
@@ -64,6 +67,7 @@ const AppLayout = () => {
     email:'namastedev.com'});
 
   return (
+    <Provider store={store}>
     <UserContext.Provider value = {{user:user,
     setUser:setUser}}>
       <Header />
@@ -74,6 +78,7 @@ const AppLayout = () => {
       <Outlet />
       <Footer />
     </UserContext.Provider>
+    </Provider>
     // Header
     //  -logo,nav,search
     // body
@@ -105,6 +110,7 @@ const appRouter = createBrowserRouter([
         ],
       },
       { path: "/contact", element: <ContactUs /> },
+      { path: "/cart", element: <Cart /> },
       {path:"/instamart",element:<Suspense fallback={<ShimmerUI/>}><Instamart/> </Suspense>},
       { path: "/restaurant/:resId", element: <RestaurantMenu /> }
     ],
