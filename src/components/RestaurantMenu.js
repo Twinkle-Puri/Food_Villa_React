@@ -31,12 +31,13 @@ const RestaurantMenu = () => {
         <h3>{restaurant?.costForTwoMsg}</h3>
       </div>
       <div>
-        <h1>Menu</h1>
-        <ul>
+        <h1 >Menu</h1>
+        <ul data-testid="menu">
           {Object.values(restaurant?.menu?.items).map((item) => (
             <li key={item.id}>
               {item.name} -
               <button
+              data-testid="addBtn"
                 className="p-1 m-1 bg-green-100"
                 onClick={() => addFoodItem(item)}
               >

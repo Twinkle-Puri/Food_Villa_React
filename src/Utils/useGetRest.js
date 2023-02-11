@@ -14,7 +14,6 @@ const useGetRest = () => {
             setAllRestaurants(response?.data?.cards[2]?.data?.data?.cards);
             setFilterRestaurants(response?.data?.cards[2]?.data?.data?.cards);
     
-            console.warn(response,"response")
       }
     return {allRestaurants,filterRestaurant,setFilterRestaurants}
 }

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import logo from "./assets/images/logo.jpg";
+import Logo from "./assets/images/logo.jpg";
 import { Link } from "react-router-dom";
 import useOnline from "../Utils/useOnline";
 import userContext from "../Utils/userContext";
@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
     
     return (
         <a href="/">
-            <img  className="h-28 pl-2"  alt ="logo" src ={logo}/>
+            <img  data-testid="logo" className="h-28 pl-2"  alt ="logo" src ={Logo}/>
         </a>
         // <h1 className="title" key="h1">Food Villa</h1>
     )
@@ -37,16 +37,16 @@ import { useSelector } from "react-redux";
                     <li className="px-2">Instamart</li>
                     </Link>
                     <Link to="/cart">
-                    <li className="px-2">Cart - {cartItems.length} items</li>
+                    <li data-testid ="cart" className="px-2">Cart - {cartItems.length} items</li>
                     </Link>
                 </ul>
             </div>
             {/* <h2>Header component</h2> */}
-            <h1 className="py-10 px-2">{isOnline ?  "Online" : "Offline"} </h1>
+            <h1 data-testid="online-status" className="py-10 px-2">{isOnline ?  "Online" : "Offline"} </h1>
             <span className="py-10 px-2">{user?.name}</span>
             { isLogIn ? 
-            <button onClick={e => setLoginUser(false)} className="py-10 px-2">LogOut</button>:
-            <button onClick={e => setLoginUser(true)} className="py-10 px-2">LogIn</button>
+            <button data-testid="logout" onClick={e => setLoginUser(false)} className="py-10 px-2">LogOut</button>:
+            <button data-testid="login" onClick={e => setLoginUser(true)} className="py-10 px-2">LogIn</button>
             }
         </div>
     )

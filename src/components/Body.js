@@ -46,6 +46,7 @@ const Body = () => {
     <>
       <div className="search-container bg-slate-200 mb-6 justify-center">
         <input
+          data-testid = "search-input"
           type="text"
           value={searchTxt}
           className="search-input focus:bg-slate-800 p-2 m-2"
@@ -53,6 +54,7 @@ const Body = () => {
           onChange={(e) => setSearchTxt(e.target.value)}
         />
         <button
+        data-testid="search-btn"
           className="search-btn p-2 m-2 bg-purple-900  hover:bg-gray-200 rounded-md"
           onClick={(e) => {
             // e.preventDefault()
@@ -80,7 +82,7 @@ const Body = () => {
           })}
         />
       </div>
-      <div className="restaurant-list flex flex-wrap">
+      <div className="restaurant-list flex flex-wrap" data-testid="rest-list">
         {filterRestaurant.map((res) => {
           return (
             <Link to={"restaurant/" + res.data.id} key={res.data.id}>
